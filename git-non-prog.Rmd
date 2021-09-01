@@ -573,5 +573,5 @@ Some good habits:
 
 
 ```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
-pagedown::chrome_print("01_slides.html", output = "01_slides.pdf")
+pagedown::chrome_print("index.html", output = "slides.pdf")
 ```
