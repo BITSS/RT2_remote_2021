@@ -276,6 +276,12 @@ talk about undo here
 9 - For this tutorial, best way to access previous version: explore in github.com and download.
 
 ]
+
+<br><br><br><br>
+.right[
+[here is some help with the lingo](handout.pdf)
+]
+
 ---
 # Five Demos 2/5: 
 <br>

@@ -1,6 +1,0 @@
----
-title: "Test 7"
-output: xaringan::moon_reader
----
-
-## blank
