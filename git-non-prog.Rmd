@@ -2,7 +2,7 @@
 title: "Git for Non-Programmers"
 author: "Fernando Hoces de la Guardia, BITSS"
 subtitle: "RT2 Remote"
-date:  "August 2021 | [slides](https://bitss.github.io/RT2_remote_2021/)"
+date:  "`r format(as.Date('2021-09-01'), '%d %B %Y')` | [slides](https://bitss.github.io/RT2_remote_2021/)"
 output: 
   xaringan::moon_reader:
     footer: "These slides available at https://bitss.github.io/RT2_remote_2021/"
@@ -220,7 +220,7 @@ background-size: contain
 ---
 background-image: url("Images/git.png")
 background-size: contain
-
+exclude:true
 # Managing expectations
 <!--
 talk about undo here
@@ -254,7 +254,7 @@ talk about undo here
   - Papers: [Labor](https://github.com/tyleransom/AES-Roy-Majors), [Health](https://github.com/mkiang/opioid_treatment_distance), [Public Finance](https://github.com/OpportunityInsights/welfare_analysis)    
   - Courses: [So](https://github.com/edrubin/EC607S21), [many](https://github.com/floswald/ScPo-Labor/), [methods](https://github.com/woerman/ResEcon703), [courses](https://github.com/paulgp/applied-methods-phd) 
   - Covid: [JHU](https://github.com/CSSEGISandData/COVID-19), [Imperial](https://github.com/ImperialCollegeLondon/covid19model), [NYT](https://github.com/nytimes/covid-19-data), [The Economist](https://github.com/TheEconomist/covid-19-excess-deaths-tracker), [EconTracker](https://github.com/OpportunityInsights/EconomicTracker)
-  - and more: [nice diagrams](https://github.com/grantmcdermott/tikzexamples), [meta-guides](https://github.com/Alalalalaki/Guide2EconRA), [books](https://github.com/BITSS/ACRE), [guaguas](https://github.com/rivaquiroga/guaguas)
+  - and more: [nice diagrams](https://github.com/grantmcdermott/tikzexamples), [meta-guides](https://github.com/Alalalalaki/Guide2EconRA), [books](https://github.com/BITSS/ACRE), [guaguas!](https://github.com/rivaquiroga/guaguas)
 
 3 -  First way to access content: download.   
 
