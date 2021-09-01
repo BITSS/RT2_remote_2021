@@ -1,0 +1,28 @@
+name: "slides-deploy-prototype"
+navbar:
+  title: "Testing deploy"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Slides"
+      menu:
+      - text: Test 1
+        href: 01-test.html
+      - text: Test 2
+        href: 02-test.html
+      - text: Test 3
+        href: 03-test.html
+      - text: Test 4
+        href: 04-test.html
+      - text: Test 5
+        href: 05-test.html
+      - text: Test 6
+        href: 06-test.html
+      - text: Test 7
+        href: 07-test.html
+      - text: Test 8
+        href: 08-test.html
+      - text: Test 9
+        href: 09-test.html
+      - text: Test 10
+        href: 10-test.html

@@ -1,0 +1,380 @@
+---
+title: "An Open Policy Analysis for Deworming Interventions"
+subtitle: "BITSS Annual Meeting"
+author: "Fernando Hoces de la Guardia, BITSS"
+date:  "`r format(as.Date('2021-09-01'), '%d %B %Y')` | [slides](https://bitss-opa.github.io/slides-dw-opa-rt2/#1)"
+output: 
+  
+  xaringan::moon_reader:
+    footer: "These slides available at https://bitss-opa.github.io/slides-dw-opa-rt2/#1"
+    css: [default, metropolis, metropolis-fonts] 
+    lib_dir: libs
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+#      slideNumberFormat: |
+#          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
+editor_options: 
+  chunk_output_type: console
+---
+count: true
+name: motivation
+background-image: url("Images/alternative-facts-crowd.png"), url("Images/senator1.png"), url("Images/senator2.png")
+background-size: 900px, 250px, 250px
+background-position: 0% 10%, 100% 0%, 100% 80%   
+
+<style>
+
+.center2 {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+pre.sourceCode {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+
+/*
+.remark-slide-number {
+  position: inherit;
+}
+
+.remark-slide-number .progress-bar-container {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  display: block;
+  left: 0;
+  right: 0;
+}
+
+.remark-slide-number .progress-bar {
+  height: 100%;
+  background-color: blue;
+}
+*/
+</style>
+
+
+
+```{css, echo=FALSE}
+# CSS for including pauses in printed PDF output (see bottom of lecture)
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+
+```
+
+
+```{r setup, include=FALSE}
+options(knitr.duplicate.label = "allow")
+options(htmltools.dir.version = FALSE)
+library(knitr)
+opts_chunk$set(
+  fig.align="center",  
+  fig.height=4, #fig.width=6,
+  # out.width="748px", #out.length="520.75px",
+  dpi=300, #fig.path='Figs/',
+  cache=T ,#, 
+  echo=F #warning=F, message=F
+  )
+library(tidyverse)
+library(hrbrthemes)
+library(fontawesome)
+
+```
+
+
+
+
+
+# Motivation: Rise of Alternative Facts
+
+
+<!--
+<br>
+<iframe width="360" height="250" src="https://www.youtube.com/embed/rV_YxKOE90g?start=188" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+-->
+
+.pull-right[
+*Senator 1 [discussing facts](https://www.youtube.com/embed/rV_YxKOE90g?start=188) on <br>
+ unemployment insurance* <br> 
+
+*Interviewer:* “We I have looked at<br> 
+ what economist are saying, and [...] <br>there is no measurable evidence that people are staying at home because of [$600 unemp. insurance]” 
+
+*Senator1:* “[scoffs] I don’t know which economist you are talking about, but ...” 
+
+<br>
+*Senator 2 [discussing facts](https://youtu.be/_uy8D7MXSYo?t=364) <br>
+on costs of healthcare reform*  
+
+*Senator2:* “...I don’t think there is a <br> 
+study out there that does not <br> 
+suggest suggests that [proposed <br> reform] is far less expensive than [status quo]"
+]
+
+
+
+---
+count: true
+# Possible Mechanism: Opaqueness of Policy Analysis
+
+.font130[
+- Incredible Certitudes (Manski, [2011](https://academic.oup.com/ej/article-abstract/121/554/F261/5079436))  
+
+- Report wars (Wesselink et al, [2013](https://www.sciencedirect.com/science/article/abs/pii/S1462901112002365))
+
+Low overall credibility of PA   
+&nbsp; &nbsp; &#8627; 
+   credibility based on reputation ("serious")   
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &#8627; assignment of reputation varies across political positions
+]
+--
+.font130[
+- Parallels to "Reproducibility Crisis" and Open Science reponse (Hoces de la Guardia, Grant, Miguel [2020](https://academic.oup.com/spp/advance-article/doi/10.1093/scipol/scaa067/6018524?guestAccessKey=ac30d681-5391-4f91-b4d8-44c6aed11161)). Propose:  
+  - Core principles for Open Policy Analysis (OPA) in output, analysis and materials 
+  - Agenda to implement and document how OPA can be applied into several policy issues
+ 
+- Here we will review the application of OPA to mass deworming interventions 
+]
+
+---
+count: true
+# Deworming Interventions   
+ - Parasitic worm infections are endemic in many countries, disproportionately affecting the poor  
+ - They interfere with regular bodily processes by decreasing nutrient uptake and can thus lead to serious consequences on human health, education outcomes, and long-term economic well being  
+ - Mass deworming interventions, at school level, have been propose as a cost-effective approach to tackle this problem
+
+--
+ 
+## Different settings for deworming  
+- Context of original study (Kenya, 1998-99) had very high prevalence rates of worm infections
+- Implementation costs where very low ($0.42 per round of treatment)
+- Length of treatment was relatively short (2.4 years)
+- Current deworming settings have lower prevalnce rates, 
+varying implementation costs and length of treatments
+
+--
+
+## Strong debate around initial results  
+- Ozier ([2020](https://academic.oup.com/wbro/advance-article/doi/10.1093/wbro/lkaa005/6009048)) summarizes differences between original findings (Miguel and Kremer 2004) and a re-analysis (Aiken et al, 2015). Emphazises the role of communication of results in a reanalysis. 
+- This type of debate (result/re-analysis) can be seen in several other topics. For example: minimum wage, inmigration, taxation. 
+- OPA need not guarante agreement on key research finding, but should help avoid multiple policy reports
+
+---
+background-image: url(Images/opa_framework.svg)
+background-size: 800px
+background-position: 60% 0%
+count:true
+  
+# A Framework for Open Policy Analysis
+.pull-left[
+Hoces de la Guardia,  
+Grant, Miguel ([2020](https://academic.oup.com/spp/advance-article/doi/10.1093/scipol/scaa067/6018524?guestAccessKey=ac30d681-5391-4f91-b4d8-44c6aed11161))
+]
+<br><br><br><br><br><br><br><br><br><br><br>
+## Contributions of OPA to deworming:  
+  1. Selected one policy estimate among several alternatives and establish a clear link between it and underlying assumptions 
+  2. Added documentation to increase reproducibility 
+  3. Created a public repository with all materials for one-click reproducibility 
+
+---
+background-image: url(Images/dw-open-out1.png), url(Images/dw-open-out2.png), url(Images/dw-open-out3.png), url(Images/open_output_all.svg)  
+background-size: 500px, 500px, 500px, 100px
+background-position: 100% 80%, 70% 40%, 40% 0%, 15% 5%
+count: true
+# Open Output
+
+.pull-left[
+## [Demo](https://bitss-opa.shinyapps.io/dw-app/)
+
+<br>
+## Main features
+- One clear output  
+previously agreed in   
+consultation with  
+policy partner
+- Two additional tabs to modify assumptions  
+(key assumptions and all assumptions)
+- Each source is classified into research,   
+data, or guesswork
+- High level equations added to illustrate location of components
+- Added feature to modify standard deviations
+- Track values of each component
+
+
+]
+
+---
+background-image: url(Images/dw-open-an2.png), url(Images/dw-open-an1.png), url(Images/open_analysis.svg)   
+background-size: 400px, 400px, 100px
+background-position: 100% 100%, 70% 0%, 15% 5%
+count: true
+# Open Analysis
+
+.pull-left[
+## [Demo](https://bitss-opa.github.io/opa-deworming/)
+<br>
+## Main features
+- Complete narrative description of the methodology
+- Translation of each narrative step into an equation
+- Implementation of each equation into code
+- Combine all of the above into using a dynamic document (RMarkdown)
+- Presentation of narrative, equations, and code in layered fashion to avoid overwhelming the reader
+Icon figure  
+
+]
+
+---
+background-image: url(Images/dw-open-mat2.png), url(Images/dw-open-mat1.png), url(Images/open_materials.svg)  
+background-size: 600px, 600px, 100px
+background-position: 100% 100%, 70% 0%, 15% 5%
+count: true
+# Open Materials
+
+.pull-left[
+## [Demo](https://github.com/BITSS-OPA/opa-deworming)
+<br>
+## Main features
+- One-click reproducible   
+documentation and app
+- Extensive readme files
+- Clear folder structure
+- Version controlled
+- Open data
+- Acknowledgment to all contributors
+
+]
+
+
+---
+background-image: url(Images/dw-nopen-out2.png), url(Images/dw-nopen-out3.png)
+background-size: 800px, 800px
+background-position: 90% 00%, 90% 100%
+count: true
+exclude:true
+# What happens if one principle fails: Opaque Output
+
+.pull-left[
+- Policy estimates of approach 2   
+of deworming (Baird et al, 2016)
+- Assume Open Analysis and   
+Open Materials
+- Good for researchers 
+- Unclear for policy analysts
+- Allows policy makers to  
+cherry pick results
+- Does not disclose uncertainty
+- Unclear separation of roles  
+between policy analyst and   
+policy maker (Truman's request  
+for a "one-handed" economist)
+]
+
+---
+count: true
+exclude:true
+
+# Opaque Analysis/Materials
+<br>
+.font140[
+-  Assume open output and open materials  
+-  In this scenario we can have two policy analyses: one from advocates and one from opponents
+-  Each analysis can claim to be open source. Code is available, reproducible, and each as an interactive app. 
+-  But each analysis can bury in their code analytical choices that move the final policy estimate in their favor
+-  Same though exercise can be done with opaque materials
+]
+
+---
+count: true
+exclude:true
+
+# Lessons for future OPA projects: Timeline
+.font110[
+1. Reviewed existing documentation  
+2. Review code/spreadsheets and write down missing documentation. 
+3. Add equations to reflect any additional clarifying steps. 
+4. Translate analysis to code scripts (ideally open source software)  
+5. Check for computational reproducibility and consult with original analysts for discrepancies/further questions
+6. Discuss with policy partner on target policy estimate
+7. Draft doodle of app 
+8. Incorporate any potential new analysis (repeat steps 1 - 3) 
+9. Present draft of OPA (DD and doodle of app) to policy partner
+10. Incorporate comments into documentation of the OPA
+11. Build app based on analysis of dynamic document 
+12. Incorporate any additional features requested by policy partner
+13. Verify that all three components produce the same output
+14. Publish v1.0
+]
+
+---
+count: true
+exclude:true
+
+# Useful practices developed during the project
+
+<br>
+.font120[
+## Documentation of analysis and app are connected
+- Each analytic step is declared in the documentation and wrapped in a function
+- All this steps are used to produce the results in the documentation
+- The steps are also stored in a file that is later sourced in the app. 
+- If something changes in the report, it will update the app. 
+
+## Style guide 
+- Group objects according to use: only within the documentation, for simulations, and for the app
+- Use diagram trees to depict nested relationships
+]
+
+
+---
+count: true
+
+
+# Lessons for future OPA projects: Costs
+.font120[
+- Costs (approx bandwidth over a year at full time): 
+ - Principal Investigator 30-50% 
+ - Research assistant/programmer 100-150% 
+ - Program Manager 20%-30% 
+ - Original researcher: 1-5%
+ 
+- Not all policy analysis justify this level of effort
+ 
+- Characteristics that might justify an OPA: 
+ - Topics with strong disagreement on the facts among analysts 
+ - Recurrent reports (eg. ex-ante economic analysis from development banks/agencies)
+ - Topics that have large expected welfare effects (eg. tax reform, social cost of carbon)
+ 
+- With each new OPA project, templates will emerge and costs will likely fall  
+]
+---
+count: true
+# Additional Benefits of OPA 
+
+## Easy to update and reuse  
+After deworming OPA is released, anybody can modify and improve into a newer version  
+
+## Clearer connection of how evidence from research is used in policy analysis
+Researchers can see clearly where their estimates are being used in a policy analysis. For example, the OPA can be used to justify power calculations of potential new studies. 
+
+## Connection with forecasting
+When there is little information for a parameter used in an OPA, a forecasting exercise can be carried out to elicit expert knowledge (DellaVigna, Pope, Vivalt [2019](https://science.sciencemag.org/content/366/6464/428.summary)).
+
+
+```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
+pagedown::chrome_print("01_slides.html", "01_slides.pdf" )
+
+```
