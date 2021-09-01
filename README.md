@@ -1,15 +1,11 @@
-# CEGA Transparency short course 2021
-Repository for CEGA's Trainning on Research Transparency.   
+# BITSS Research Transparency and Reproducibility Trainning (RT2) 2021
+Repository for RT2's Trainning on Research Transparency.   
 Dictated by Fernando Hoces de la Guardia
 
 
-**Tuesday March 23:**  
-- 10:00 AM	- [Intro to BITSS](https://bitss.github.io/CEGA2021/)
-- 11:15 AM - Setup for hands-on session
+**Wednesday September 1**
+- 9:25 AM	- [Intro to Version Control](https://bitss.github.io/RT2_remote_2021/)
 
-**Wednesday March 24**
-- 10:00 AM	- [Intro to Version Control](https://github.com/BITSS/CEGA2021/tree/master/02-Git-GUI)
-- 10:45 AM	- [Intro to Dynamic Documents](https://github.com/BITSS/CEGA2021/tree/master/03-dynamicdocs)
 
 
 
