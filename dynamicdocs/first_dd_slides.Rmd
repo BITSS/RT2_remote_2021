@@ -1,0 +1,121 @@
+---
+title: "First Slides: Birthday Problem"
+author: "Fernando Hoces de la Guardia"
+date: "9/1/2021"
+output:
+  slidy_presentation: default
+  beamer_presentation: default
+  ioslides_presentation: default
+---
+
+<!--
+- for HTML, slidy seems to be the most compatible,
+- for all: replace non r code chunk headers with "md" (compare line 42 with 61 )
+- for beamer, replace \newline with "\\"
+- general point: commit to one ouput in slides, don't try to switch back and forth
+-->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+set.seed(1234)
+n.pers = 21
+n.sims = 1e4
+```
+
+
+## The birthday problem: the math
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the $1 - p(n)$ is the probability that all are born in a different day. Which we can compute as: 
+
+
+\begin{align} 
+ 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+ &= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
+ &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+\end{align}
+
+
+## Code for the math 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)
+
+Copy and paste lines below into your `first_dd.Rmd`
+
+```md
+\begin{align} 
+ 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times
+              \left(1-\frac{2}{365}\right) \times \cdots \times
+              \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+           &= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \newline
+           &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+\p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * 
+                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+\end{align}
+```
+
+
+## Code for the math 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)
+
+Copy and paste lines below into your `first_dd.Rmd`
+
+```{latex, eval=FALSE}
+\begin{align} 
+ 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times
+              \left(1-\frac{2}{365}\right) \times \cdots \times
+              \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+           &= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \newline
+           &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+*\p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * 
+*                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+\end{align}
+```
+
+
+## Don't like math? Let's run a simple simulation!   
+
+
+ 1 - Simulate `r n.sims` rooms with $n = `r n.pers`$ random birthdays, and store the results in matrix where each row represents a room.   
+ 
+ 2 - For each room (row) compute the number of unique birthdays.   
+ 
+ 3 - Compute the average number of times a room has `r n.pers` unique birthdays, across `r n.sims` simulations, and report the complement.    
+
+
+## Code for the simulation 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)  
+
+
+```{r birthday prob, eval=TRUE, echo=TRUE}
+birthday.prob = function(n.pers_var, n.sims_var) {
+  # simulate birthdays
+  birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
+                     nrow = n.sims_var, ncol = n.pers_var)
+  # for each room (row) get unique birthdays
+  unique.birthdays = apply(birthdays, 1,
+                           function(x)  length( unique(x) ) )
+  # Indicator with 1 if all are unique birthdays
+  all.different = 1 * (unique.birthdays==n.pers_var)
+  # Compute average time all have different birthdays 
+  result = 1 - mean(all.different)
+return(result)
+}
+
+bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
+print(bp_sim)
+```
+
+
+
+## Results   
+
+
+- Many people originally think of a prob ~ $\frac{1}{365} \times n =   `r round(1/365 * n.pers, 3)`$
+
+- However the true probability is of $p(n= `r n.pers`) = `r round(1 - factorial(n.pers) * choose(365,n.pers)/ 365^n.pers, 3)`$
+
+- And the simulated probability is of  $`r bp_sim`$
+
+

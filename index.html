@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Git for Non-Programmers</title>
+    <title>Dynamic Documents using R: Hands-On</title>
     <meta charset="utf-8" />
     <meta name="author" content="Fernando Hoces de la Guardia, BITSS" />
     <script src="libs/header-attrs-2.9/header-attrs.js"></script>
@@ -13,565 +13,655 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Git for Non-Programmers
+# Dynamic Documents using R: Hands-On
 ## RT2 Remote
 ### Fernando Hoces de la Guardia, BITSS
 ### 01 September 2021 | <a href="https://bitss.github.io/RT2_remote_2021/">slides</a>
 
 ---
 
-count:false
-# Before we begin 
 
+
+
+
+# Dynamic Documents For Computational Reproducibility
+.pull-left[
+.font140[
+
+- Based on principles of *literate programming* aims at combining code and paper in one single document 
+
+- Best framework to achieve the aspirational goal of **one-click reproducible workflow**
+
+- Best two current implementations: `RMarkdown (R)` &amp; `Jupyter (Julia, Python)`.  `Stata` is catching up (dyndocs release [here](https://www.stata.com/new-in-stata/markdown/) and reviews [here](http://data.princeton.edu/stata/markdown/markstat.htm) and [here](https://www.bitss.org/2017/09/05/review-of-statas-dyndoc/))
+
+]
+]
+--
+.pull-right[
+.font140[
+**"Bro-pen" Science Warning Ahead!**    
+
+- Dynamic docs are useful, but they are not essential for reproducibility   
+- They are pack with  little quirks that takes a while to master  
+- Within DD 90% of the values comes from the most basic (default) output. All the other "cool and easy" feature can be not so easy and make you suffer from the "shiny new exit" phenomena
+]
+]
+---
+background-image: url("Images/Two universes.png")
+background-size: contain
+
+# .font80[Currently code and narrative components live in separate universes ]
+
+
+---
+background-image: url("Images/One universe.png")
+background-size: contain
+
+# Dynamic Documents: integrate the two universes!  
+
+
+
+---
+  
+# Dynamic Documents: A Recipe  
+
+.font140[
+&lt;br&gt;
+- 1 simple language that can combine text and code: `Markdown` 
+
+- 1 statistical package to do the analysis (`R`, `Python`, `3S's?`)
+
+- 1 machinery to combine analysis and text to create a single output: `Pandoc`
+
+- [Optional-but-not-really] 1 program to bring all the elements together: RStudio/RMarkdown, Jupyter
+]
+---
+background-image: url("Images/RStudioCS.png")
+background-size: contain
+# Markdown laguange/syntax in 60 seconds
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.right[
+[helpful editor](https://stackedit.io/app#)  
+to get you  
+started
+]
+
+
+---
+background-image: url("Images/RMarkdownFlow.png")
+background-size: contain
+background-position: 0% 80%
+# One Type of Dynamic Document: R Markdown
+
+.font140[
+&lt;br&gt;
+- `R`: **open source** programming language design for statistical analysis.   
+
+- RStudio: free software that provides and Integrated Development Environment (IDE)  
+
+- RStudio combines all together: R + Markdown + Pandoc to produce multiple outputs
+]
+
+---
+background-image: url("Images/RMarkdownOutputFormats.png")
+background-size: contain
+# R Markdown  
+
+
+---
+
+# Basic Structure
 .font150[
-
 &lt;br&gt;&lt;br&gt;
-- [GitHub desktop app](https://desktop.github.com/) installed?
+- A header
 
-- Create an account at [GitHub.com](http://www.github.com/)?
+- Text
 
-- If no to any, please do it now (recommend to exit zoom temporarily to allow for internet bandwidth)
+- Code: inline and chunks
+]
 
+
+---
+
+# Basic Structure: Header
+.pull-left[
+  .font140[
+- Controls document-level charchterisitics: 
+  - type of output (.html, .pdf, etc)
+  - links to other docs (appeareance, bibliography)
+  - others
+- YAML language
+- Define by "`---`"
+    
+      
+    ]
+]
+
+.pull-right[
+.font150[
+&lt;br&gt;
+
+
+```yml
+---
+title: "Sample Paper"
+author: "Fernando Hoces"
+output: html_document
+---
+```
+]
 ]
 
 ---
 
-background-image: url("Images/iceberg.jpg")
-background-size: 50%
-background-position: 100% 50%
-# Motivation: Computational Reproducibility
+# Basic Structure: Body of Text
 
-&lt;!--- https://imgflip.com/i/5lb28s --&gt;
+.font150[
+&lt;br&gt;
+
+
+```yml
+---
+header
+---
+```
+
+
+This is where you write your paper. Nothing much to add. You can check Markdown [syntax here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf). And it can use can type equations using [LaTex syntax](https://www.overleaf.com/learn/latex/Mathematical_expressions)!
+
+]
+
+---
+background-image: url("Images/chunk_click.png")
+background-position: 90% 30%
+background-size: 500px
+# Basic Structure: Code Chunks and Inline
 
 .pull-left[
+
+.font130[
+
+
+```r
+---
+header
+---
+```
+
+Body of text. 
+
+
+To begin a piece of code ("code chunk"). Enclose them in the following expression (Ctrl/Cmd + shift/optn + i) 
+
+````
+```{r, eval=TRUE}
+here goes the code
+```
+````
+
+
+To write inline use only one Back-tick to open followed by an "r" and one to close.
+
+]
+
+]
+
+---
+
+
+# Practical Excercise  Goals  
+
+
+.font140[
+**Primary Goals:**  
+1. Become familiar with your first DD.    
+2. Compile an empty (or default) DD into multiple formats.   
+3. Edit a DD with some narrative, some code (in R) and some math (optional).   
+4. Present all the results dynamically into multiple outputs.   
+
+]
+
+.font140[
+**Secondary Goal:**    
+1. Expose you to some R programming.   
+2. Entertain you with a fun problem.  
+]
+
+
+
+
+
+---
+
+# Hands-on excercise: the birthday problem!
+.font140[
+
 &lt;br&gt;
+
+As an illustration lets write a report using the participants in this workshop to illustrate the famous [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem). 
+
+&gt;What is the probability that at least two people this room share the same birthday?
+
+&gt;There are 21 in this room. 
+
+&gt;Is it something like `\(\frac{21}{365} =\)`   0.058?
+
+
+]
+
+---
+# Create a new RMarkdown File
+.font140[
+
+1 - In RStudio: `File-&gt; New File -&gt; RMarkdown...`  
+
+2 - Name it, and save it as `/dynamicdocs/first_dd.Rmd`.   
+
+3 - Review/edit the header, and delete all the default body of text except for one code chunk.   
+
+4 - In that chunk define a seed (`set.seed(1234)`, number of people in the room (`n.pers = ?`), and this other variable:`n.sims = 10000` (will explain later) 
+
+5 - Below the first chunk, write down a title (using `#`) and a brief description.
+
+]
+---
+
+# The birthday problem: the math
+.font140[
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the `\(1 - p(n)\)` is the probability that all are born in a different day. Which we can compute as: 
+]
+--
+.font140[
+\begin{align} 
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+ &amp;= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
+ &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+p(n= 21) &amp;= 0.444  \nonumber
+\end{align}
+]
+
+---
+background-image: url("Images/klingon.png")
+background-position: 90% 60%
+background-size: 200px
+count:false
+
+# The birthday problem: the math
+.font140[
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the `\(1 - p(n)\)` is the probability that all are born in a different day. Which we can compute as: 
+]
+
+.font140[
+\begin{align} 
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+ &amp;= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
+ &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+p(n= 21) &amp;= 0.444  \nonumber
+\end{align}
+]
+
+---
+# Code for the math 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)
+
+Copy and paste lines below into your `first_dd.Rmd`
+.font130[
+
+```latex
+\begin{align} 
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times
+              \left(1-\frac{2}{365}\right) \times \cdots \times
+              \left(1-\frac{n-1}{365}\right) \nonumber  \\
+           &amp;= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
+           &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
+\p(n= `r n.pers`) &amp;= `r  round(1 - factorial(n.pers) * 
+                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+\end{align}
+```
+]
+---
+count:false
+# Code for the math 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)
+
+Copy and paste lines below into your `first_dd.Rmd`
+.font130[
+
+```latex
+\begin{align} 
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times
+              \left(1-\frac{2}{365}\right) \times \cdots \times
+              \left(1-\frac{n-1}{365}\right) \nonumber  \\
+           &amp;= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
+           &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
+*\p(n= `r n.pers`) &amp;= `r  round(1 - factorial(n.pers) * 
+*                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+\end{align}
+```
+]
+
+---
+
+
+# Don't like math? Let's run a simple simulation!   
+
+.font150[
+&lt;br&gt;
+ 1 - Simulate 10^{4} rooms with `\(n = 21\)` random birthdays, and store the results in matrix where each row represents a room.   
+ 
+ 2 - For each room (row) compute the number of unique birthdays.   
+ 
+ 3 - Compute the average number of times a room has 21 unique birthdays, across 10^{4} simulations, and report the complement.    
+]
+
+---
+
+# Code for the simulation 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)  
 .font120[
-    Clarebout Principle:
-    &lt;/br&gt;&lt;/br&gt;
-    “An article about computational science in a scientific publication is not the scholarship itself, it’s merely scholarship advertisement. The actual scholarship is the complete software development environment and the complete set of instructions which generated the figures.”
-.right[  &lt;cite&gt; Buckheit and D.L. Donoho (1995, [2009](https://academiccommons.columbia.edu/doi/10.7916/D8QZ2MDS/download))&lt;/cite&gt;]
-]
-
-]
 
 
----
-# Git/Github for Version Control 
-.font150[
-&lt;br&gt;
-- Version Control Software is an increasingly popular tool for computational reproducibility
+```r
+birthday.prob = function(n.pers_var, n.sims_var) {
+  # simulate birthdays
+  birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
+                     nrow = n.sims_var, ncol = n.pers_var)
+  # for each room (row) get unique birthdays
+  unique.birthdays = apply(birthdays, 1,
+                           function(x)  length( unique(x) ) )
+  # Indicator with 1 if all are unique birthdays
+  all.different = 1 * (unique.birthdays==n.pers_var)
+  # Compute average time all have different birthdays 
+  result = 1 - mean(all.different)
+return(result)
+}
 
-- Git is a type of VCS and Github company that build on top of .   
+bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
+print(bp_sim)
+```
 
-- They are very popular among programmers, but not so much among non-programmers. 
-
-- Why? I believe it has to do with GUIs.
-
-]
----
-
-# What is a GUI and why the bad reputation
-
-.font150[
-&lt;br&gt;&lt;br&gt;
-**G**raphical **U**ser **I**nterface   
-
-- For most of us (non-programmers): *GUI = Software*.  
-
-- GUIs are behind the popularization of personal computers. 
-
-- Unfortunately GUIs are pretty bad at keeping a record of actions taken (bad for reproducibility).
-]
-
----
-
-# What is not a GUI?
-
-.font140[  
-
-- Any software that is run in the command line (aka terminal, shell, bash, etc).  
-
-]
-
-![](Images/command_line.png)
-
-.font140[ 
-
-- Git was designed to run in the command line.
-
-- Today we will learn Git **without** the command line.
-]
-
----
-
-# What is Git 1/2
-.font150[
-&lt;br&gt;
-- Git is a software designed to track the **entire** history of the code of a project. 
-
-- Designed originally for software development, it has gained important traction in the research community. 
-
-- Main appeal: facilitates full reproducibility and collaboration. 
-
-- Git is mainly meant to work as a non-GUI (in the command line) software.   
-**However:** most of the key features can be used through a GUI. 
+```
+## [1] 0.4531
+```
 ]
 ---
+background-image: url("Images/klingon.png")
+background-position: 90% 0%
+background-size: 200px
+count:false
+# Code for the simulation 
 
-# What is Git 2/2
+(`/dynamicdocs/first_dd_solution.Rmd`)  
+.font120[
 
-.font150[ 
-&lt;br&gt;
-- By code Git understands any type of plain text file (`myfile.R`, `myfile.do`, `.tex/.md/.txt/.csv/.etc`).
 
-- This type of file can be understood as "human readable" as machine and human see the same fie. 
+```r
+birthday.prob = function(n.pers_var, n.sims_var) {
+  # simulate birthdays
+  birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
+                     nrow = n.sims_var, ncol = n.pers_var)
+  # for each room (row) get unique birthdays
+  unique.birthdays = apply(birthdays, 1,
+                           function(x)  length( unique(x) ) )
+  # Indicator with 1 if all are unique birthdays
+  all.different = 1 * (unique.birthdays==n.pers_var)
+  # Compute average time all have different birthdays 
+  result = 1 - mean(all.different)
+return(result)
+}
 
-- Files that are "non-human readable" are called binary files (`myfile.docx`, `myfile.xlxs`, `.pdf/.exe/.dta/.etc`).
+bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
+print(bp_sim)
+```
 
-- Git can also detect changes in binary files, but it cannot show those changes.
+```
+## [1] 0.4365
+```
 ]
 
 ---
 
-# What is Github
-.font150[
-&lt;br&gt;
-- Github is a company that provides two services (that we care of): 
-  - A web hosting service for all our files track with Git (public free/private $ or free if academic).  
-  - A GUI software (Desktop App) that provides user friendly access to Git.
-
-- Others hosting ss include: Bitbucket, GitLab, Gitkraken, etc. 
-
-- Other GUIs include: SourceTree, Gitkraken, Atom, RStudio.
-
-]
-
----
-
-# The Primary Goal of Version Control (for us)
-
-.font150[
-&lt;br&gt;&lt;br&gt;
-**The Goal:** keep track of any potentially meaningful modification to your code.  
-]
---
-.font150[
-**Secondary Goal:** learn how to collaborate with others using Github.   
-]
---
-.font150[
-**Bonus track:** get you excited about using open source statistical software (R, Python, Julia, etc)
-]
-
----
-# Strategy 1:  
+# Results   
 
 .font150[
 &lt;br&gt;
-1. Agree on a naming convention with your co-authors (eg: YYYYMMDDfilename_INITALS).  
+- Many people originally think of a prob ~ `\(\frac{1}{365} \times n =   0.058\)`
 
-2. Begin working from the last saved version (eg: `20180325demo_FH.do`).  
-3. At the end of the day, save on a new version (eg: `20180327demo_FH.do`).  
+- However the true probability is of `\(p(n= 21) = 0.444\)`
 
-**Pros:** Easy adoption.   
-
-**Cons:** Error prone, hard to document, lots of files for each document.     
+- And the simulated probability is of  `\(0.4365\)`
 ]
----
 
-# Strategy 2:  
-
-.font150[
-&lt;br&gt;
-
-1. Name your file `filename` (ideally `01_filename`)  
-2. Take a snapshot of your work every time you complete relevant change (day, hour or minutes).  
-3. Update your entire working folder to the cloud.   
-
-
-**Pros:** Error proof, seamless documentation, one file per document, track differences across all versions, meant to work with the cloud. 
-
-**Cons:** Harder adoption.   
-]
----
-background-image: url("Images/phdcomics.png")
-background-size: contain
-
-
-# We want to avoid this situation:   
-
-
----
-background-image: url("Images/version_control_diagram.svg")
-background-size: contain 
-
-# Comparison of Workflows
-
-
----
-
-# Other reasons to use Git
-
-.font150[
-&lt;br&gt;&lt;br&gt;
-- To access a whole new world of knowledge!    
-
-- Great tool for collaboration.  
-- Easier to test all sorts of ideas/models. 
-]
----
-background-image: url("Images/git.png")
-background-size: contain
-exclude:true
-# Managing expectations
 &lt;!--
-talk about undo here
+asd &lt;- sapply(1:365, function(x) round(1 - factorial(x) * 
++           choose(365,x)/ 365^x, 3) )
+
+plot(1:100, asd[1:100], type = "l")
+
+
+&gt; asd1 &lt;- function(y) sapply(1:100, function(x) birthday.prob(n.pers_var = x, y) )
+
+
+&gt; lines(asd1(5), col="red")
+&gt; lines(asd1(30), col="blue")
+&gt; lines(asd1(100), col="green")
+&gt; points(asd1(1000), pch=3)
+legend(60, 0.3, legend=c("5 sims", "30 sims", "100 sims", "1000 sims"),
++        col=c("red", "blue", "green", "black"), lty=c(1,1,1,3), cex=0.8)
+
+title(main="main title", sub="sub-title", 
+   xlab="x-axis label", ylab="y-axis label")
+
 --&gt;
 ---
-# Demos
 
-## Five Demos: 
-&lt;br&gt;
-.font140[
-
-1 - **Simple but instructive.**   
-
-2 - Repeat with branches.  
+# Let's try some other outpus  
  
-3 - Repeat with collaboration: pull requests.   
+| Output      | Additional Step? | Loss                     | Share                                         | Others                                                                    |
+|-------------|------------------|--------------------------|-----------------------------------------------|---------------------------------------------------------------------------|
+| Simple HTML | no               | none                     | one click (RPubs) or &lt;br&gt;"index method" in github | [cheatsheet](https://rmarkdown.rstudio.com/lesson-15.HTML)            |
+| Word        | no               | equations, interactivity | attachment                                    | [help](https://ardata-fr.github.io/officeverse/index.html)                |
+| PDF         | no               | interactivity            | attachment                                    | requires LaTex &lt;br&gt;`install.packages('tinytex')` &lt;br&gt;`tinytex::install_tinytex()` |
+| Slides      | New File         | some diff in syntax      | one click /  index method                     | HTML or PDF  (with similar &lt;br&gt; characteristics as above)                 |
+| Book        | [many](#additional-steps)  | -              | index method                                  | `install.packages('bookdown')` &lt;br&gt; [book](https://bookdown.org/yihui/bookdown/) |
 
-4 - Repeat with collaboration: shared ownership.   
+- Other outputs not covered: Apps (`shiny`), blogs (`blogdown`), packages (`pkgdown`), richer webpages (`pagedown`), and dashboards (`flexdashboard`)
 
-5 - Explore a real life repo.    
+- Explore templates and install `rticles` for more!
+
+---
+name: additional-steps
+# Additional Steps for Book Output 
+.font120[
+1 -  Create a new project: `File-&gt; New Porject... -&gt; New Directory -&gt; Book Project using bookdown`   
+2 -  Place project in independent folder and then convert into a git repo:
+      `Tools-&gt;Project Options`, choose git, then use GitHub app to publish repo.   
+3 -  Place each chapter into a new Rmd, and enumerate them  
+4 -  Go to top-right pane click on `Build -&gt; Build `   
+5 -  (preparation to share) In the file `_bookdown.yml`, add the following lines    
+     -`repo: https://github.com/YOUR-USER-ID/first_book_solution`  
+     -`output_dir: docs`  
+     -`edit: https://github.com/YOUR-USER-ID/first_book_solution/edit/master/%s`  
+6 - Modify latex engine in code chunk (line 20 of chapter 2) from `latex` to `md`
+6 - Build the book again.   
+7 - To share: push repo into github.com, then go to the repo's URL, then `settings`, `pages`, select `master` branch, select `docs` folder and save 
+
+]
+---
+background-image: url("Images/autor_fig.png")
+background-position: 50% 50%
+background-size: 700px
+
+# Practical Excercise #2: Mostly Harmless Econometrics!
+
+
+There is a [fantastic Github](https://github.com/vikjam/mostly-harmless-replication) repo that is reproducing results from MHE 
+
+Lets use the of examples Figure [5.2.4](https://github.com/vikjam/mostly-harmless-replication/blob/master/05%20Fixed%20Effects%2C%20DD%20and%20Panel%20Data/Figure%205-2-4.r) to show how dynamic docs can be used in data analysis. 
+
+
+
+  
+---
+
+# Goals for excercise #2  
+.font140[
+**Primary Goals:**  
+1 - Demonstrate how the **entire workflow** of a study can fit into a DD.   
+2 - Show how to add options to the header.  
+3 - Demonstrate how a DD make code readable to non-coders.   
+
+
+
+**Secondary Goal:**    
+1 - Expose you to some R programming.   
 ]
 ---
 
-# Demo #1: We Start in the Cloud 
+# Instructions to get started with excercise #2:
+.font140[
+
+1 - Create a new blank `.Rmd` file (steps 1 - 3 in from previous ex.)
+
+2 - Save it as `/dynamicdocs/Figure 5-2-4.Rmd`   
+
+3 - Look at [this code](https://github.com/vikjam/mostly-harmless-replication/blob/master/05%20Fixed%20Effects%2C%20DD%20and%20Panel%20Data/Figure%205-2-4.r) behind figure 5.2.4.  
+
+4 - Start building your own DD to describe what this code does. 
+
+We will go step by step using `/dynamicdocs/Figure 5-2-4_solutions.Rmd` as back-up.
+]
+---
+
+# Description
+.font140[
+
+- Begin a new section (`##`), titled "Description"  
+
+- Write a brief description of our goal in the DD.   
+
+- You might want to insert a reference to the paper: [link here](http://economics.mit.edu/files/589).  
+
+- Specific content not so relevant, just refer to "a treatment" and "a outcome".  
+
+]
+---
+
+# Getting the raw data
+
+.font140[
+- Begin a new section (`##`), titled "Raw Data".   
+- Describe what you will do.  
+- Create two code chunks:
+````
+```{r download data, eval=FALSE, echo=TRUE, 
+warning=FALSE, results='hide', message=FALSE}
+here goes the code
+```
+````
+]
+
+---
+
+# Cleaning the data
+
+.font140[
+
+- Begin a new section (`##`), titled "Data Cleaning".   
+- Describe what you will do:  
+    - Restrict sample to years between 1979 and 1995 (inclusive)  
+    - Guam from the sample (state = 98).   
+- Create one code chunk:  
+````
+```{r data cleaning, echo=TRUE}
+here goes the code
+```
+````
+
+- Add some description on the data (using dynamic reporting). See solutions (Figure `5-2-4_solutions.Rmd` line 58) for examples.   
+]
+---
+
+# Build the analytic file
+.font140[
+- Begin a new section (`##`), titled "Build analytic file".   
+- Describe what you will do.   
+- We need to construct the following variables:   
+    - Log of total employment  
+    - Normalize the year variable to 1978  
+- Insert a new code chunk:
+
+````
+```{r analytic file, echo=TRUE}
+here goes the code
+```
+````
+
+]
+
+---
+
+# Describe the model to estimate (optional)  
+.font140[
 &lt;br&gt;
-.font130[
-
-1 -  Create [github.com](github.com) account and sign in.   
-
-2 -  Let's look at some **repos:**  
-  - Papers: [Labor](https://github.com/tyleransom/AES-Roy-Majors), [Health](https://github.com/mkiang/opioid_treatment_distance), [Public Finance](https://github.com/OpportunityInsights/welfare_analysis)    
-  - Courses: [So](https://github.com/edrubin/EC607S21), [many](https://github.com/floswald/ScPo-Labor/), [methods](https://github.com/woerman/ResEcon703), [courses](https://github.com/paulgp/applied-methods-phd) 
-  - Covid: [JHU](https://github.com/CSSEGISandData/COVID-19), [Imperial](https://github.com/ImperialCollegeLondon/covid19model), [NYT](https://github.com/nytimes/covid-19-data), [The Economist](https://github.com/TheEconomist/covid-19-excess-deaths-tracker), [EconTracker](https://github.com/OpportunityInsights/EconomicTracker)
-  - and more: [nice diagrams](https://github.com/grantmcdermott/tikzexamples), [meta-guides](https://github.com/Alalalalaki/Guide2EconRA), [books](https://github.com/BITSS/ACRE), [guaguas!](https://github.com/rivaquiroga/guaguas)
-
-3 -  First way to access content: download.   
-
-4 -  What if you want to have your own copy of the repo? **Fork** it!  
-
+- Begin a new section (`##`), titled "Define model to estimate".   
+- One line describing what we want to estimate (i.e. "We want to estimate a fixed effect model with lead and lag treatment variables").     
+- A mathematical model that represents the equation to be estimated (look at solutions). 
 ]
 ---
-# Demo #1: We move to our local computer 
+
+# Vizualize the results (optional)
+.font140[
 &lt;br&gt;
-.font130[
-5 -  Now create your own repo. Initiate readme and make some edits.   
 
-6 - **Clone** the repo. Explore the files and location.   
-
-7 - Create new files, edit. And **commit**. Edit again, and commit again.   
-
-8 - **Push.** Edit on github.com, and **pull.**   
-
-9 - For this tutorial, best way to access previous version: explore in github.com and download.
-
+- Begin a new section (`##`), titled "Vizualize the results".   
+- One line describing what we want to estimate (i.e. "This estimates are then used to create figure 3 of the original paper, which is figure 5.2.4 in MHE.").  
+````
+```{r viz}
+here goes the code
+```
+````
 ]
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-.right[
-[here is some help with the lingo](handout.pdf)
-]
-
 ---
-# Five Demos 2/5: 
-&lt;br&gt;
+
+# Practical Excercise #2  
+
 .font140[
-
-1 - Simple but instructive.   
-    *Review: def repo, github.com, download, clone, destination folder, fork, create repo, commit, push, pull, delete, search repo, download old version.*   
-
-2 - **Repeat with branches.**  
- 
-3 - Repeat with collaboration: pull requests.   
-
-4 - Repeat with collaboration: shared ownership.   
-
-5 - Explore a real life repo.     
-    ]
----
-# .font80[Demo #2: Branches and collaboration (we wil be here a while)]
-&lt;br&gt;
-.font140[
-
-1 - Create a branch from previous repo.  
-
-2 - Add new content (do not replace), commit a few times, and go back and forth to the main branch.  
-
-3 - Go back to main branch (master), observe file, merge.  
-
-4 - Look at the history of the main branch.   
-
-5 - Repeat 1-3 but now replace instead of adding content.    
- 
+- Run your version into multiple outputs.   
+- Run the solutions version into multiple outputs.   
+- Compare document with original version of the code.   
 ]
 ---
-# Fatal Error!
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;img src="Images/error_image.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-
-
----
-background-image: url("Images/calm_burn.jpg")
-background-size: contain
-
-# Burn it and start with a fresh copy!
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-.right[
-  [Jenny Bryan's Advice](https://speakerdeck.com/jennybc/happy-git-and-github-for-the-user)
-]
----
-# Five Demos: 3/5 
-
-&lt;br&gt;
+# Bonus truck: NBER Working Papers!
 .font140[
+- Remeber the example from yesterday on the half bake analysis of NBER papers in github?
 
+- Fork and clone the repo one more time: 
+[github.com/fhoces/nber_trends](https://github.com/fhoces/nber_trends)
 
-1 - Simple but instructive.   
-    Review: def repo, github.com, download, clone, destination folder, fork, create repo, commit, push, pull, delete, search repo, download old version.  
-    
-2 - Repeat with branches.  
-    *Review: All of the above, plus: branch, merge, resolve conflicts.*  
-    
-3 - **Repeat with collaboration: pull requests.**  
-
-4 - Repeat with collaboration: shared ownership.     
-
-5 - Explore a real life repo.  
-
+- Now knit the `.Rmd` file instead. 
 
 ]
 ---
-# Two formats of collaboration  
-&lt;br&gt;
+
+# Final Remarks &amp; More Resources
 .font140[
 
-- One owner, many pull requests.  
-    - Easier to control, requires constant updating of forks.   
-    
-- Many owners, all can push.   
-    - **Very** important to pull at the beginning and at before each push. 
+- With DD we can get closer to a one-click reproducible workflow.
+
+- Helps to generate 95% of final output, but if you cannot customize your output 100% do the last 5% in the final desired output (word, latex, etc). 
+
+- Large amount of great tutorials on the web (check out the most recent one from RStudio).
+
+- Great examples: blog posts, and [so](https://bookdown.org/ts_robinson1994/10_fundamental_theorems_for_econometrics/vtDma6bZJ/), [many](https://admindatahandbook.mit.edu/book/v1.0/index.html), [books](https://bitss.github.io/ACRE/) (not many papers!). 
+
+- Want to learn more: [great free books](https://bookdown.org/) (can you guess how they were written?)
 ]
----
-# Demo #3: Pull requests
-&lt;br&gt;
-.font140[
-
-1 - Fork repo [github.com/BITSS/test_birthday](https://github.com/BITSS/test_birthday), and clone it into your machine.  
-
-2 - Edit fields of name, and birth date.   
-
-3 - Save, commit and push.   
-
-4 - Create your first **pull request**.   
-
-5 - Let's see if I can manage all those pull requests very quickly (maybe illustrate issues).   
-
-6 - Now find your neighbors repo of Demos 1 &amp; 2, fork it, clone it, make a change, save, commit, and...
-] 
-
----
-# Five Demos: 4/5 
-.font140[
-1 - Simple but instructive.   
-    Review: def repo, github.com, download, clone, destination folder, fork, create repo, commit, push, pull, delete, search repo, download old version.  
-    
-2 - Repeat with branches.  
-    Review: All of the above, plus: branch, merge, resolve conflicts.   
-    
-3 - Repeat with collaboration: pull requests.   
-    *Review: collaborate via fork + PR*  
-    
-4 - **Repeat with collaboration: shared ownership. **    
-
-5 - Explore a real life repo.  
-
-]
----
-# Demo #4: Many owners
-
-.font140[
-    
-1 - Half of you (\#1): go back to the repo of demo 1 &amp; 2 and invite a collaborator.  
-(Suggestion: the "forker" finds the repo, the "forkee" is invited  
-, edits, commits,  and push/pull)  
-]
---
-.font140[
-2 - The other half (\#2): clones, commits and pushes.  
-]
---
-.font140[
-3 - \#1 commits and pushes in **different lines**.    
-]
---
-.font140[
-4 - Switch and repeat 2 &amp; 3: \#2 commits first and pushes, then \#1.    
-]
---
-.font140[
-5 - Repeat 2 - 4 but now both of you in the same lines.    
-]
-
---
-.font140[
-6 - Repeat now but with branches (optional).    
-]
-
-
-
----
-# Five Demos: 5/5 
-.font140[
-
-1 - Simple but instructive.   
-    Review: def repo, github.com, download, clone, destination folder, fork, create repo, commit, push, pull, delete, search repo, download old version.  
-
-2 - Repeat with branches.  
-    Review: All of the above, plus: branch, merge, resolve conflicts.   
-
-3 - Repeat with collaboration: pull requests.   
-    Review: collaborate via fork + PR  
-
-4 - Repeat with collaboration: shared ownership.     
-    *Review: collaborate via share ownership.*  
-
-5 - **Explore a real life repo. ** 
-]   
-
-
----
-# Demo #5: .font80[Look inside a real-life project (and collaborate!)]
-.font140[
-1-  Find the following repo: [`github.com/BITSS/opa-wealthtax`](https://www.github.com/BITSS/opa-wealthtax).   
-
-2-  Fork it and clone it.    
-
-3-  Open it in your computer: `opa-wealthtax.Rproj` (needs RStudio), look around and execute 
-`code/dynamic_doc/wealth_tax_dd.Rmd`.  
-
-4-  Find elasticities at `rawdata/edits/research.csv`, modify one elasticity, document, execute again.
-
-5 - Find `code/interactive_visualization/server.R` and in line `1561` change `red` to `blue`
-]
-
-
-
----
-# Five Demos: 5/5 
-.font140[
-1 - Simple but instructive.   
-    Review: def repo, github.com, download, clone, destination folder, fork, create repo, commit, push, pull, delete, search repo, download old version.  
-    
-2 - Repeat with branches.  
-    Review: All of the above, plus: branch, merge, resolve conflicts.   
-    
-3 - Repeat with collaboration: pull requests.   
-    Review: collaborate via fork + PR  
-    
-4 - Repeat with collaboration: shared ownership.     
-    Review: collaborate via share ownership.  
-    
-5 - Explore a real life repo.  
-    *Review: All of the above, plus: how does a real-life example looks like.* 
-]
-
----
-# Now go and explore!
-&lt;br&gt;
-.font140[
-
-Some good habits:   
-- Commit often (&lt;1hr)  
-
-- Always pull before you start a new session of work. Also good to pull before pushing.    
-
-- Think of your remote as the most important set of files. Get used to deleting things in your local machine.    
-]
-
----
-# Want to Learn More: Version Control
-
-## Tutorials
-
-.font140[
-
-- [Great 20 min intro to Git by Alice Bartlett](https://www.youtube.com/watch?v=eWxxfttcMts)  
-- [Great 2hr tutorial to Github by Jenny Bryan (git ninja)](https://www.rstudio.com/resources/videos/happy-git-and-gihub-for-the-user-tutorial/)  
-- Software Carpentry's [step-by-step tutorial (command line)](https://swcarpentry.github.io/git-novice/). 
-]
-
-## Documentation
-
-.font140[
-
-- Jenny Bryan's [Happy Git](http://happygitwithr.com/)
-- [Documentation from Matthew Gentzkow and Jesse Shapiro](http://web.stanford.edu/~gentzkow/research/CodeAndData.pdf)
-- Karthik Ram's paper on [Git for Research](https://scfbm.biomedcentral.com/articles/10.1186/1751-0473-8-7) 
-]
-
----
-# .font80[Economists Doing Highly Reproducible Work&lt;sup&gt;1&lt;/sup&gt;] 
-
-.pull-left[
-
-**People**
-- [Nick Huntingon](https://github.com/NickCH-K) 
-- [Shoshana Vasserman](https://github.com/shoshievass)  
-- [Lars Vilhuber](https://github.com/larsvilhuber)
-- [Grant McDermott](https://github.com/grantmcdermott)
-- [Tyler Ransom](https://github.com/tyleransom)
-- [Ed Rubin](https://github.com/edrubin)
-- [Luiza Andrade](https://github.com/luizaandrade)
-- [Max Kasy](https://github.com/maxkasy)
-- [Matt Jensen](https://github.com/MattHJensen)
-- [Jason DeBacker](https://github.com/jdebacker)
-- [John Horton](https://github.com/johnjosephhorton)
-- [Cora Kingdon](https://github.com/ckingdon95)
-- [Chandler Lester](https://github.com/chandlerlester)
-
-]
-.pull-right[
-- [Alvaro Carril](https://github.com/acarril)
-- [Andrew Heiss](https://github.com/andrewheiss)
-- [Lisa Rennels](https://github.com/lrennels)
-- [Michael Stepner](https://github.com/michaelstepner)
-- [Lachlan Deer](https://github.com/lachlandeer) 
-- [Rebekah Din](https://github.com/rebekahanne)
-
-
-**Organizations**
-- [LOST](https://lost-stats.github.io/)
-- [Opportunity Lab](https://github.com/Opportunitylab)
-- [Congressional Budget Office](https://github.com/US-CBO)
-- [Policy Simulation Library](https://github.com/PSLmodels)
-- [Gentzkow &amp; Shapiro Lab](https://github.com/gslab-econ)
-- [Urban Institute](https://github.com/UrbanInstitute)
-]
-
-&lt;/br&gt;&lt;/br&gt;
-.footnote[
-[1]: Non-exhaustive list of people and organizations doing amazing reproducible work on github (other than us!)
-]
-
-
-
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

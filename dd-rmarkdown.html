@@ -24,18 +24,37 @@ class: center, middle, inverse, title-slide
 
 
 
-# Dynamic Documents For Computational Reproducibility
+# Before we begin
+.font150[
 
+- Clone/download [this repo](https://github.com/BITSS/RT2_remote_2021)  
+
+- If you are having issues of bandwith, clone/download [this repo instead]()
+]
+---
+
+# Dynamic Documents For Computational Reproducibility
+.pull-left[
 .font140[
-&lt;br&gt;
+
 - Based on principles of *literate programming* aims at combining code and paper in one single document 
 
 - Best framework to achieve the aspirational goal of **one-click reproducible workflow**
 
-- Best two current implementations: `RMarkdown (R)` &amp; `Jupyter (Python)`.  `Stata` is catching up (dyndocs release [here](https://www.stata.com/new-in-stata/markdown/) and reviews [here](http://data.princeton.edu/stata/markdown/markstat.htm) and [here](https://www.bitss.org/2017/09/05/review-of-statas-dyndoc/))
+- Best two current implementations: `RMarkdown (R)` &amp; `Jupyter (Julia, Python)`.  `Stata` is catching up (dyndocs release [here](https://www.stata.com/new-in-stata/markdown/) and reviews [here](http://data.princeton.edu/stata/markdown/markstat.htm) and [here](https://www.bitss.org/2017/09/05/review-of-statas-dyndoc/))
 
 ]
+]
+--
+.pull-right[
+.font140[
+**"Bro-pen" Science Warning Ahead!**    
 
+- Dynamic docs are useful, but they are not essential for reproducibility   
+- They are pack with  little quirks that takes a while to master  
+- Within DD 90% of the values comes from the most basic (default) output. All the other "cool and easy" feature can be not so easy and make you suffer from the "shiny new exit" phenomena
+]
+]
 ---
 background-image: url("Images/Two universes.png")
 background-size: contain
@@ -70,6 +89,13 @@ background-image: url("Images/RStudioCS.png")
 background-size: contain
 # Markdown laguange/syntax in 60 seconds
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.right[
+[helpful editor](https://stackedit.io/app#)  
+to get you  
+started
+]
+
 
 ---
 background-image: url("Images/RMarkdownFlow.png")
@@ -95,42 +121,75 @@ background-size: contain
 ---
 
 # Basic Structure
-
+.font150[
+&lt;br&gt;&lt;br&gt;
 - A header
+
 - Text
+
 - Code: inline and chunks
+]
+
 
 ---
 
 # Basic Structure: Header
+.pull-left[
+  .font140[
+- Controls document-level charchterisitics: 
+  - type of output (.html, .pdf, etc)
+  - links to other docs (appeareance, bibliography)
+  - others
+- YAML language
+- Define by "`---`"
+    
+      
+    ]
+]
+
+.pull-right[
+.font150[
+&lt;br&gt;
 
 
-```r
+```yml
 ---
 title: "Sample Paper"
-author: "Fernando Hoces de la Guardia"
+author: "Fernando Hoces"
 output: html_document
 ---
 ```
-
-
+]
+]
 
 ---
 
 # Basic Structure: Body of Text
 
+.font150[
+&lt;br&gt;
 
-```r
+
+```yml
 ---
 header
 ---
 ```
 
-This is where you write your paper. Nothing much to add. You can check Markdown [syntax here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf). And it can use can type equations using LaTex syntax!
+
+This is where you write your paper. Nothing much to add. You can check Markdown [syntax here](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf). And it can use can type equations using [LaTex syntax](https://www.overleaf.com/learn/latex/Mathematical_expressions)!
+
+]
 
 ---
-
+background-image: url("Images/chunk_click.png")
+background-position: 90% 30%
+background-size: 500px
 # Basic Structure: Code Chunks and Inline
+
+.pull-left[
+
+.font130[
 
 
 ```r
@@ -153,27 +212,41 @@ here goes the code
 
 To write inline use only one Back-tick to open followed by an "r" and one to close.
 
+]
+
+]
+
 ---
 
 
 # Practical Excercise  Goals  
 
 
+.font140[
 **Primary Goals:**  
-1 - Become familiar with your first DD.    
-2 - Compile an empty (or default) DD into multiple formats.   
-3 - Edit a DD with some narrative, some code (in R) and some math (optional).   
-4 - Present all the results dynamically into multiple outputs.   
+1. Become familiar with your first DD.    
+2. Compile an empty (or default) DD into multiple formats.   
+3. Edit a DD with some narrative, some code (in R) and some math (optional).   
+4. Present all the results dynamically into multiple outputs.   
 
-\pause 
+]
 
+.font140[
 **Secondary Goal:**    
-1 - Expose you to some R programming.   
-2 - Entertain you with a fun problem.  
+1. Expose you to some R programming.   
+2. Entertain you with a fun problem.  
+]
+
+
+
+
 
 ---
 
 # Hands-on excercise: the birthday problem!
+.font140[
+
+&lt;br&gt;
 
 As an illustration lets write a report using the participants in this workshop to illustrate the famous [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem). 
 
@@ -181,131 +254,300 @@ As an illustration lets write a report using the participants in this workshop t
 
 &gt;There are 21 in this room. 
 
-&gt;Is it something like `\(\frac{1}{365} \times  21=\)`   0.058?
+&gt;Is it something like `\(\frac{21}{365} =\)`   0.058?
+
+
+]
 
 ---
 # Create a new RMarkdown File
+.font140[
 
 1 - In RStudio: `File-&gt; New File -&gt; RMarkdown...`  
-2 - Name it, and save it as `/3-dynamicdocs/first_dd.Rmd`.   
+
+2 - Name it, and save it as `/dynamicdocs/first_dd.Rmd`.   
+
 3 - Review/edit the header, and delete all the default body of text except for one code chunk.   
-4 - In that chunk define a seed (`set.seed(1234)` and number of people in the room (`n.pers = ?`).  
+
+4 - In that chunk define a seed (`set.seed(1234)`, number of people in the room (`n.pers = ?`), and this other variable:`n.sims = 10000` (will explain later) 
+
 5 - Below the first chunk, write down a title (using `#`) and a brief description.
 
+]
 ---
 
 # The birthday problem: the math
-Actually the math says otherwise: 
+.font140[
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the `\(1 - p(n)\)` is the probability that all are born in a different day. Which we can compute as: 
+]
+--
+.font140[
 \begin{align} 
  1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
  &amp;= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
  &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
 p(n= 21) &amp;= 0.444  \nonumber
 \end{align}
+]
 
 ---
+background-image: url("Images/klingon.png")
+background-position: 90% 60%
+background-size: 200px
+count:false
 
-# Code for the math (`/3-dynamicdocs/first_dd_solution.Rmd`)
+# The birthday problem: the math
+.font140[
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the `\(1 - p(n)\)` is the probability that all are born in a different day. Which we can compute as: 
+]
 
-Not relevant to look at: just copy and paste lines 23-30 from the solutions into your dynamic document (`first_dd_solution.Rmd`). 
-
-
-```r
+.font140[
 \begin{align} 
- 1 - \bar p(n) &amp;= 1 \times \left(1-\frac{1}{365}
-                                 \right) 
- \times ...
- A lot of equations using LateX syntax!
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+ &amp;= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
+ &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+p(n= 21) &amp;= 0.444  \nonumber
+\end{align}
+]
+
+---
+# Code for the math 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)
+
+Copy and paste lines below into your `first_dd.Rmd`
+.font130[
+
+```latex
+\begin{align} 
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times
+              \left(1-\frac{2}{365}\right) \times \cdots \times
+              \left(1-\frac{n-1}{365}\right) \nonumber  \\
+           &amp;= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
+           &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
+\p(n= `r n.pers`) &amp;= `r  round(1 - factorial(n.pers) * 
+                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
 \end{align}
 ```
+]
+---
+count:false
+# Code for the math 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)
+
+Copy and paste lines below into your `first_dd.Rmd`
+.font130[
+
+```latex
+\begin{align} 
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times
+              \left(1-\frac{2}{365}\right) \times \cdots \times
+              \left(1-\frac{n-1}{365}\right) \nonumber  \\
+           &amp;= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
+           &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
+*\p(n= `r n.pers`) &amp;= `r  round(1 - factorial(n.pers) * 
+*                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+\end{align}
+```
+]
 
 ---
+
 
 # Don't like math? Let's run a simple simulation!   
- 1 - Simulate 10,000 rooms with `\(n = 21\)` random birthdays, and store the results in matrix where each row represents a room.   
- 2 - For each room (row) compute the number of unique birthdays.   
- 3 - Compute the average number of times a room has 21 unique birthdays, across 10,000 simulations, and report the complement.    
 
+.font150[
+&lt;br&gt;
+ 1 - Simulate 10^{4} rooms with `\(n = 21\)` random birthdays, and store the results in matrix where each row represents a room.   
+ 
+ 2 - For each room (row) compute the number of unique birthdays.   
+ 
+ 3 - Compute the average number of times a room has 21 unique birthdays, across 10^{4} simulations, and report the complement.    
+]
 
 ---
 
-# Code for the simulation (`/first_dd_solution.Rmd`)  
+# Code for the simulation 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)  
+.font120[
 
 
 ```r
-birthday.prob = function(n.pers, n.sims) {
+birthday.prob = function(n.pers_var, n.sims_var) {
   # simulate birthdays
-  birthdays = matrix(round(runif(n.pers * n.sims, 
-                                 1, 365)), 
-                      nrow = n.sims, ncol = n.pers)
+  birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
+                     nrow = n.sims_var, ncol = n.pers_var)
   # for each room (row) get unique birthdays
-  unique.birthdays = apply(birthdays, 1, 
-                           function(x) 
-                             length(unique(x)) )
+  unique.birthdays = apply(birthdays, 1,
+                           function(x)  length( unique(x) ) )
   # Indicator with 1 if all are unique birthdays
-  all.different = 1 * (unique.birthdays==n.pers)
+  all.different = 1 * (unique.birthdays==n.pers_var)
   # Compute average time all have different birthdays 
   result = 1 - mean(all.different)
 return(result)
 }
-n.pers.param = n.pers; n.sims.param = 1e4
-birthday.prob(n.pers.param,n.sims.param)
+
+bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
+print(bp_sim)
 ```
 
 ```
-## [1] 0.441
+## [1] 0.4531
 ```
+]
+---
+background-image: url("Images/klingon.png")
+background-position: 90% 0%
+background-size: 200px
+count:false
+# Code for the simulation 
+
+(`/dynamicdocs/first_dd_solution.Rmd`)  
+.font120[
+
+
+```r
+birthday.prob = function(n.pers_var, n.sims_var) {
+  # simulate birthdays
+  birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
+                     nrow = n.sims_var, ncol = n.pers_var)
+  # for each room (row) get unique birthdays
+  unique.birthdays = apply(birthdays, 1,
+                           function(x)  length( unique(x) ) )
+  # Indicator with 1 if all are unique birthdays
+  all.different = 1 * (unique.birthdays==n.pers_var)
+  # Compute average time all have different birthdays 
+  result = 1 - mean(all.different)
+return(result)
+}
+
+bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
+print(bp_sim)
+```
+
+```
+## [1] 0.4365
+```
+]
 
 ---
 
 # Results   
-- Many people originally think of a prob ~ `\(\frac{1}{365} \times N =\)`   0.058
+
+.font150[
+&lt;br&gt;
+- Many people originally think of a prob ~ `\(\frac{1}{365} \times n =   0.058\)`
+
 - However the true probability is of `\(p(n= 21) = 0.444\)`
-- And the simulated probability is of  0.4455
+
+- And the simulated probability is of  `\(0.4365\)`
+]
+
+&lt;!--
+asd &lt;- sapply(1:365, function(x) round(1 - factorial(x) * 
++           choose(365,x)/ 365^x, 3) )
+
+plot(1:100, asd[1:100], type = "l")
 
 
+&gt; asd1 &lt;- function(y) sapply(1:100, function(x) birthday.prob(n.pers_var = x, y) )
+
+
+&gt; lines(asd1(5), col="red")
+&gt; lines(asd1(30), col="blue")
+&gt; lines(asd1(100), col="green")
+&gt; points(asd1(1000), pch=3)
+legend(60, 0.3, legend=c("5 sims", "30 sims", "100 sims", "1000 sims"),
++        col=c("red", "blue", "green", "black"), lty=c(1,1,1,3), cex=0.8)
+
+title(main="main title", sub="sub-title", 
+   xlab="x-axis label", ylab="y-axis label")
+
+--&gt;
 ---
 
+# Let's try some other outpus  
+ 
+| Output      | Additional Step? | Loss                     | Share                                         | Others                                                                    |
+|-------------|------------------|--------------------------|-----------------------------------------------|---------------------------------------------------------------------------|
+| Simple HTML | no               | none                     | one click (RPubs) or &lt;br&gt;"index method" in github | [cheatsheet](https://rmarkdown.rstudio.com/lesson-15.HTML)            |
+| Word        | no               | equations, interactivity | attachment                                    | [help](https://ardata-fr.github.io/officeverse/index.html)                |
+| PDF         | no               | interactivity            | attachment                                    | requires LaTex &lt;br&gt;`install.packages('tinytex')` &lt;br&gt;`tinytex::install_tinytex()` |
+| Slides      | New File         | some diff in syntax      | one click /  index method                     | HTML or PDF  (with similar &lt;br&gt; characteristics as above)                 |
+| Book        | [many](#additional-steps)  | -              | index method                                  | `install.packages('bookdown')` &lt;br&gt; [book](https://bookdown.org/yihui/bookdown/) |
+
+- Other outputs not covered: Apps (`shiny`), blogs (`blogdown`), packages (`pkgdown`), richer webpages (`pagedown`), and dashboards (`flexdashboard`)
+
+- Explore templates and install `rticles` for more!
+
+---
+name: additional-steps
+# Additional Steps for Book Output 
+.font120[
+1 -  Create a new project: `File-&gt; New Porject... -&gt; New Directory -&gt; Book Project using bookdown`   
+2 -  Place project in independent folder and then convert into a git repo:
+      `Tools-&gt;Project Options`, choose git, then use GitHub app to publish repo.   
+3 -  Place each chapter into a new Rmd, and enumerate them  
+4 -  Go to top-right pane click on `Build -&gt; Build `   
+5 -  (preparation to share) In the file `_bookdown.yml`, add the following lines    
+     -`repo: https://github.com/YOUR-USER-ID/first_book_solution`  
+     -`output_dir: docs`  
+     -`edit: https://github.com/YOUR-USER-ID/first_book_solution/edit/master/%s`  
+6 - Modify latex engine in code chunk (line 20 of chapter 2) from `latex` to `md`
+6 - Build the book again.   
+7 - To share: push repo into github.com, then go to the repo's URL, then `settings`, `pages`, select `master` branch, select `docs` folder and save 
+
+]
+---
+background-image: url("Images/autor_fig.png")
+background-position: 50% 50%
+background-size: 700px
+
 # Practical Excercise #2: Mostly Harmless Econometrics!
+
 
 There is a [fantastic Github](https://github.com/vikjam/mostly-harmless-replication) repo that is reproducing results from MHE 
 
 Lets use the of examples Figure [5.2.4](https://github.com/vikjam/mostly-harmless-replication/blob/master/05%20Fixed%20Effects%2C%20DD%20and%20Panel%20Data/Figure%205-2-4.r) to show how dynamic docs can be used in data analysis. 
 
----
 
-## Figure to reproduce  
-![](../Images/autor_fig.png)
 
   
 ---
 
 # Goals for excercise #2  
-
+.font140[
 **Primary Goals:**  
 1 - Demonstrate how the **entire workflow** of a study can fit into a DD.   
 2 - Show how to add options to the header.  
 3 - Demonstrate how a DD make code readable to non-coders.   
 
-\pause 
+
 
 **Secondary Goal:**    
 1 - Expose you to some R programming.   
-
+]
 ---
 
 # Instructions to get started with excercise #2:
+.font140[
 
 1 - Create a new blank `.Rmd` file (steps 1 - 3 in from previous ex.)
-2 - Save it as `/3-dynamicdocs/Figure 5-2-4.Rmd`   
+
+2 - Save it as `/dynamicdocs/Figure 5-2-4.Rmd`   
+
 3 - Look at [this code](https://github.com/vikjam/mostly-harmless-replication/blob/master/05%20Fixed%20Effects%2C%20DD%20and%20Panel%20Data/Figure%205-2-4.r) behind figure 5.2.4.  
+
 4 - Start building your own DD to describe what this code does. 
 
-We will go step by step using `/3-dynamicdocs/Figure 5-2-4_solutions.Rmd` as back-up.
-
+We will go step by step using `/dynamicdocs/Figure 5-2-4_solutions.Rmd` as back-up.
+]
 ---
 
 # Description
+.font140[
 
 - Begin a new section (`##`), titled "Description"  
 
@@ -315,10 +557,12 @@ We will go step by step using `/3-dynamicdocs/Figure 5-2-4_solutions.Rmd` as bac
 
 - Specific content not so relevant, just refer to "a treatment" and "a outcome".  
 
+]
 ---
 
 # Getting the raw data
 
+.font140[
 - Begin a new section (`##`), titled "Raw Data".   
 - Describe what you will do.  
 - Create two code chunks:
@@ -328,11 +572,13 @@ warning=FALSE, results='hide', message=FALSE}
 here goes the code
 ```
 ````
-
+]
 
 ---
 
 # Cleaning the data
+
+.font140[
 
 - Begin a new section (`##`), titled "Data Cleaning".   
 - Describe what you will do:  
@@ -346,11 +592,11 @@ here goes the code
 ````
 
 - Add some description on the data (using dynamic reporting). See solutions (Figure `5-2-4_solutions.Rmd` line 58) for examples.   
-
+]
 ---
 
 # Build the analytic file
-
+.font140[
 - Begin a new section (`##`), titled "Build analytic file".   
 - Describe what you will do.   
 - We need to construct the following variables:   
@@ -364,17 +610,23 @@ here goes the code
 ```
 ````
 
+]
+
 ---
 
 # Describe the model to estimate (optional)  
-
+.font140[
+&lt;br&gt;
 - Begin a new section (`##`), titled "Define model to estimate".   
 - One line describing what we want to estimate (i.e. "We want to estimate a fixed effect model with lead and lag treatment variables").     
 - A mathematical model that represents the equation to be estimated (look at solutions). 
-
+]
 ---
 
-# Vizualize the results (optional)  
+# Vizualize the results (optional)
+.font140[
+&lt;br&gt;
+
 - Begin a new section (`##`), titled "Vizualize the results".   
 - One line describing what we want to estimate (i.e. "This estimates are then used to create figure 3 of the original paper, which is figure 5.2.4 in MHE.").  
 ````
@@ -382,17 +634,20 @@ here goes the code
 here goes the code
 ```
 ````
-
+]
 ---
 
 # Practical Excercise #2  
+
+.font140[
 - Run your version into multiple outputs.   
 - Run the solutions version into multiple outputs.   
 - Compare document with original version of the code.   
-
+]
 ---
 
 # Bonus truck: NBER Working Papers!
+.font140[
 - Remeber the example from yesterday on the half bake analysis of NBER papers in github?
 
 - Fork and clone the repo one more time: 
@@ -400,14 +655,24 @@ here goes the code
 
 - Now knit the `.Rmd` file instead. 
 
-
+]
 ---
 
 # Final Remarks &amp; More Resources
- - With DD we can achieve a one-click reproducible workflow.
- - This is particularly helpful to understand/present results that are hard to digest.
- - More great examples in the workshop repo (`x-moredynamicdocs`).
- - Want to learn more: [great free books](https://bookdown.org/) (can you guess how they were written?)
+.font140[
+
+- With DD we can get closer to a one-click reproducible workflow.
+
+- Helps to generate 95% of final output, but if you cannot customize your output 100% do the last 5% in the final desired output (word, latex, etc). 
+
+- Large amount of great tutorials on the web (check out the most recent one from RStudio).
+
+- Great examples: blog posts, and [so](https://bookdown.org/ts_robinson1994/10_fundamental_theorems_for_econometrics/vtDma6bZJ/), [many](https://admindatahandbook.mit.edu/book/v1.0/index.html), [books](https://bitss.github.io/ACRE/) (not many papers!). 
+
+- Want to learn more: [great free books](https://bookdown.org/) (can you guess how they were written?)
+]
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
