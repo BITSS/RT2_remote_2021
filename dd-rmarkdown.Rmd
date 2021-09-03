@@ -2,7 +2,7 @@
 title: "Dynamic Documents using R: Hands-On"
 author: "Fernando Hoces de la Guardia, BITSS"
 subtitle: "RT2 Remote"
-date:  "`r format(as.Date('2021-09-01'), '%d %B %Y')` | [slides](https://bitss.github.io/RT2_remote_2021/)"
+date:  "`r format(as.Date('2021-09-03'), '%d %B %Y')` | [slides](https://bitss.github.io/RT2_remote_2021/)"
 output: 
   xaringan::moon_reader:
     footer: "These slides available at https://bitss.github.io/RT2_remote_2021/"
@@ -87,7 +87,7 @@ background-size: contain
 - [Optional-but-not-really] 1 program to bring all the elements together: RStudio/RMarkdown, Jupyter
 ]
 ---
-background-image: url("Images/RStudioCS.png")
+background-image: url("Images/RStudioCS.PNG")
 background-size: contain
 # Markdown laguange/syntax in 60 seconds
 
@@ -659,6 +659,6 @@ here goes the code
 - Want to learn more: [great free books](https://bookdown.org/) (can you guess how they were written?)
 ]
 
-```{r gen_pdf, include = FALSE, cache = FALSE, eval = TRUE}
+```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
 pagedown::chrome_print("index.html", output = "slides_dd.pdf")
 ```
