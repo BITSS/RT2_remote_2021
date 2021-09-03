@@ -1,29 +1,27 @@
----
-title: "Dynamic Documents using R: Hands-On"
-author: "Fernando Hoces de la Guardia, BITSS"
-subtitle: "RT2 Remote"
-date:  "`r format(as.Date('2021-09-03'), '%d %B %Y')` | [slides](https://bitss.github.io/RT2_remote_2021/)"
-output: 
-  xaringan::moon_reader:
-    footer: "These slides available at https://bitss.github.io/RT2_remote_2021/"
-    css: [default, metropolis, metropolis-fonts] 
-    lib_dir: libs
-    nature:
-      ratio: '16:9'
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-#      slideNumberFormat: |
-#          <div class="progress-bar" style="width: calc(%current% / %total% * 100%);">
-editor_options: 
-  chunk_output_type: console
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Dynamic Documents using R: Hands-On</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Fernando Hoces de la Guardia, BITSS" />
+    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Dynamic Documents using R: Hands-On
+## RT2 Remote
+### Fernando Hoces de la Guardia, BITSS
+### 03 September 2021 | <a href="https://bitss.github.io/RT2_remote_2021/">slides</a>
+
 ---
 
-```{r global pars, eval=TRUE, echo=FALSE, results='hide'}
-n.pers = 16
-n.sims = 1e4
-set.seed(1234)
-```  
+
+
 
 
 # Before we begin
@@ -43,7 +41,7 @@ set.seed(1234)
 
 - Best framework to achieve the aspirational goal of **one-click reproducible workflow**
 
-- Best two current implementations: `RMarkdown (R)` & `Jupyter (Julia, Python)`.  `Stata` is catching up (dyndocs release [here](https://www.stata.com/new-in-stata/markdown/) and reviews [here](http://data.princeton.edu/stata/markdown/markstat.htm) and [here](https://www.bitss.org/2017/09/05/review-of-statas-dyndoc/))
+- Best two current implementations: `RMarkdown (R)` &amp; `Jupyter (Julia, Python)`.  `Stata` is catching up (dyndocs release [here](https://www.stata.com/new-in-stata/markdown/) and reviews [here](http://data.princeton.edu/stata/markdown/markstat.htm) and [here](https://www.bitss.org/2017/09/05/review-of-statas-dyndoc/))
 
 ]
 ]
@@ -77,7 +75,7 @@ background-size: contain
 # Dynamic Documents: A Recipe  
 
 .font140[
-<br>
+&lt;br&gt;
 - 1 simple language that can combine text and code: `Markdown` 
 
 - 1 statistical package to do the analysis (`R`, `Python`, `3S's?`)
@@ -91,7 +89,7 @@ background-image: url("Images/RStudioCS.PNG")
 background-size: contain
 # Markdown laguange/syntax in 60 seconds
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 .right[
 [helpful editor](https://stackedit.io/app#)  
 to get you  
@@ -106,7 +104,7 @@ background-position: 0% 80%
 # One Type of Dynamic Document: R Markdown
 
 .font140[
-<br>
+&lt;br&gt;
 - `R`: **open source** programming language design for statistical analysis.   
 
 - RStudio: free software that provides and Integrated Development Environment (IDE)  
@@ -124,7 +122,7 @@ background-size: contain
 
 # Basic Structure
 .font150[
-<br><br>
+&lt;br&gt;&lt;br&gt;
 - A header
 
 - Text
@@ -151,15 +149,16 @@ background-size: contain
 
 .pull-right[
 .font150[
-<br>
+&lt;br&gt;
 
-```{yml, eval=FALSE, echo=TRUE}
+
+```yml
 ---
 title: "Sample Paper"
 author: "Fernando Hoces"
 output: html_document
 ---
-```  
+```
 ]
 ]
 
@@ -168,9 +167,10 @@ output: html_document
 # Basic Structure: Body of Text
 
 .font150[
-<br>
+&lt;br&gt;
 
-```{yml, eval=FALSE, echo=TRUE}
+
+```yml
 ---
 header
 ---
@@ -191,7 +191,8 @@ background-size: 500px
 
 .font130[
 
-```{r yml, eval=FALSE, echo=TRUE}
+
+```r
 ---
 header
 ---
@@ -203,7 +204,7 @@ Body of text.
 To begin a piece of code ("code chunk"). Enclose them in the following expression (Ctrl/Cmd + shift/optn + i) 
 
 ````
-```{r, eval=TRUE}`r ''`
+```{r, eval=TRUE}
 here goes the code
 ```
 ````
@@ -245,15 +246,15 @@ To write inline use only one Back-tick to open followed by an "r" and one to clo
 # Hands-on excercise: the birthday problem!
 .font140[
 
-<br>
+&lt;br&gt;
 
 As an illustration lets write a report using the participants in this workshop to illustrate the famous [birthday problem](https://en.wikipedia.org/wiki/Birthday_problem). 
 
->What is the probability that at least two people this room share the same birthday?
+&gt;What is the probability that at least two people this room share the same birthday?
 
->There are `r n.pers` in this room. 
+&gt;There are 16 in this room. 
 
->Is it something like $\frac{`r n.pers`}{365} =$   `r round(n.pers/365 , 3)`?
+&gt;Is it something like `\(\frac{16}{365} =\)`   0.044?
 
 
 ]
@@ -262,7 +263,7 @@ As an illustration lets write a report using the participants in this workshop t
 # Create a new RMarkdown File
 .font140[
 
-1 - In RStudio: `File-> New File -> RMarkdown...`  
+1 - In RStudio: `File-&gt; New File -&gt; RMarkdown...`  
 
 2 - Name it, and save it as `/dynamicdocs/first_dd.Rmd`.   
 
@@ -277,15 +278,15 @@ As an illustration lets write a report using the participants in this workshop t
 
 # The birthday problem: the math
 .font140[
-Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the $1 - p(n)$ is the probability that all are born in a different day. Which we can compute as: 
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the `\(1 - p(n)\)` is the probability that all are born in a different day. Which we can compute as: 
 ]
 --
 .font140[
 \begin{align} 
- 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
- &= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
- &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
-p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+ &amp;= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
+ &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+p(n= 16) &amp;= 0.284  \nonumber
 \end{align}
 ]
 
@@ -297,15 +298,15 @@ count:false
 
 # The birthday problem: the math
 .font140[
-Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the $1 - p(n)$ is the probability that all are born in a different day. Which we can compute as: 
+Actually the math says otherwise. Define p(n) as the probability that at least one pair has the same birthday, then the `\(1 - p(n)\)` is the probability that all are born in a different day. Which we can compute as: 
 ]
 
 .font140[
 \begin{align} 
- 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
- &= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
- &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
-p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times \left(1-\frac{2}{365}\right) \times \cdots \times \left(1-\frac{n-1}{365}\right) \nonumber  \newline
+ &amp;= \frac{ 365 \times 364 \times \cdots \times (365-n+1) }{ 365^n } \nonumber \newline
+ &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\newline
+p(n= 16) &amp;= 0.284  \nonumber
 \end{align}
 ]
 
@@ -316,14 +317,15 @@ p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * choose(365,n.pers)/ 365^n.
 
 Copy and paste lines below into your `first_dd.Rmd`
 .font130[
-```{latex, eval=FALSE}
+
+```latex
 \begin{align} 
- 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times
               \left(1-\frac{2}{365}\right) \times \cdots \times
               \left(1-\frac{n-1}{365}\right) \nonumber  \\
-           &= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
-           &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
-\p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * 
+           &amp;= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
+           &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
+\p(n= `r n.pers`) &amp;= `r  round(1 - factorial(n.pers) * 
                           choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
 \end{align}
 ```
@@ -336,14 +338,15 @@ count:false
 
 Copy and paste lines below into your `first_dd.Rmd`
 .font130[
-```{latex, eval=FALSE}
+
+```latex
 \begin{align} 
- 1 -  p(n) &= 1 \times \left(1-\frac{1}{365}\right) \times
+ 1 -  p(n) &amp;= 1 \times \left(1-\frac{1}{365}\right) \times
               \left(1-\frac{2}{365}\right) \times \cdots \times
               \left(1-\frac{n-1}{365}\right) \nonumber  \\
-           &= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
-           &= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
-*\p(n= `r n.pers`) &= `r  round(1 - factorial(n.pers) * 
+           &amp;= \frac{365 \times 364 \times \cdots \times (365-n+1) }{365^n} \nonumber \\
+           &amp;= \frac{ 365! }{ 365^n (365-n)!} = \frac{n!\cdot\binom{365}{n}}{365^n}\\
+*\p(n= `r n.pers`) &amp;= `r  round(1 - factorial(n.pers) * 
 *                          choose(365,n.pers)/ 365^n.pers, 3)`  \nonumber
 \end{align}
 ```
@@ -355,12 +358,12 @@ Copy and paste lines below into your `first_dd.Rmd`
 # Don't like math? Let's run a simple simulation!   
 
 .font150[
-<br>
- 1 - Simulate `r n.sims` rooms with $n = `r n.pers`$ random birthdays, and store the results in matrix where each row represents a room.   
+&lt;br&gt;
+ 1 - Simulate 10^{4} rooms with `\(n = 16\)` random birthdays, and store the results in matrix where each row represents a room.   
  
  2 - For each room (row) compute the number of unique birthdays.   
  
- 3 - Compute the average number of times a room has `r n.pers` unique birthdays, across `r n.sims` simulations, and report the complement.    
+ 3 - Compute the average number of times a room has 16 unique birthdays, across 10^{4} simulations, and report the complement.    
 ]
 
 ---
@@ -370,7 +373,8 @@ Copy and paste lines below into your `first_dd.Rmd`
 (`/dynamicdocs/first_dd_solution.Rmd`)  
 .font120[
 
-```{r birthday prob1, eval=TRUE, echo=TRUE}
+
+```r
 birthday.prob = function(n.pers_var, n.sims_var) {
   # simulate birthdays
   birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
@@ -387,6 +391,10 @@ return(result)
 
 bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
 print(bp_sim)
+```
+
+```
+## [1] 0.4531
 ```
 ]
 ---
@@ -399,7 +407,8 @@ count:false
 (`/dynamicdocs/first_dd_solution.Rmd`)  
 .font120[
 
-```{r birthday prob2, eval=TRUE, echo=TRUE}
+
+```r
 birthday.prob = function(n.pers_var, n.sims_var) {
   # simulate birthdays
   birthdays = matrix(round(runif(n = n.pers_var * n.sims_var, min = 1, max = 365) ),
@@ -417,6 +426,10 @@ return(result)
 bp_sim = birthday.prob(n.pers_var = 21, n.sims_var = 10000)
 print(bp_sim)
 ```
+
+```
+## [1] 0.4365
+```
 ]
 
 ---
@@ -424,46 +437,46 @@ print(bp_sim)
 # Results   
 
 .font150[
-<br>
-- Many people originally think of a prob ~ $\frac{1}{365} \times n =   `r round(1/365 * n.pers, 3)`$
+&lt;br&gt;
+- Many people originally think of a prob ~ `\(\frac{1}{365} \times n =   0.044\)`
 
-- However the true probability is of $p(n= `r n.pers`) = `r round(1 - factorial(n.pers) * choose(365,n.pers)/ 365^n.pers, 3)`$
+- However the true probability is of `\(p(n= 16) = 0.284\)`
 
-- And the simulated probability is of  $`r bp_sim`$
+- And the simulated probability is of  `\(0.4365\)`
 ]
 
-<!--
-asd <- sapply(1:365, function(x) round(1 - factorial(x) * 
+&lt;!--
+asd &lt;- sapply(1:365, function(x) round(1 - factorial(x) * 
 +           choose(365,x)/ 365^x, 3) )
 
 plot(1:100, asd[1:100], type = "l")
 
 
-> asd1 <- function(y) sapply(1:100, function(x) birthday.prob(n.pers_var = x, y) )
+&gt; asd1 &lt;- function(y) sapply(1:100, function(x) birthday.prob(n.pers_var = x, y) )
 
 
-> lines(asd1(5), col="red")
-> lines(asd1(30), col="blue")
-> lines(asd1(100), col="green")
-> points(asd1(1000), pch=3)
+&gt; lines(asd1(5), col="red")
+&gt; lines(asd1(30), col="blue")
+&gt; lines(asd1(100), col="green")
+&gt; points(asd1(1000), pch=3)
 legend(60, 0.3, legend=c("5 sims", "30 sims", "100 sims", "1000 sims"),
 +        col=c("red", "blue", "green", "black"), lty=c(1,1,1,3), cex=0.8)
 
 title(main="main title", sub="sub-title", 
    xlab="x-axis label", ylab="y-axis label")
 
--->
+--&gt;
 ---
 
 # Let's try some other outpus  
  
 | Output      | Additional Step? | Loss                     | Share                                         | Others                                                                    |
 |-------------|------------------|--------------------------|-----------------------------------------------|---------------------------------------------------------------------------|
-| Simple HTML | no               | none                     | one click (RPubs) or <br>"index method" in github | [cheatsheet](https://rmarkdown.rstudio.com/lesson-15.HTML)            |
+| Simple HTML | no               | none                     | one click (RPubs) or &lt;br&gt;"index method" in github | [cheatsheet](https://rmarkdown.rstudio.com/lesson-15.HTML)            |
 | Word        | no               | equations, interactivity | attachment                                    | [help](https://ardata-fr.github.io/officeverse/index.html)                |
-| PDF         | no               | interactivity            | attachment                                    | requires LaTex <br>`install.packages('tinytex')` <br>`tinytex::install_tinytex()` |
-| Slides      | New File         | some diff in syntax      | one click /  index method                     | HTML or PDF  (with similar <br> characteristics as above)                 |
-| Book        | [many](#additional-steps)  | -              | index method                                  | `install.packages('bookdown')` <br> [book](https://bookdown.org/yihui/bookdown/) |
+| PDF         | no               | interactivity            | attachment                                    | requires LaTex &lt;br&gt;`install.packages('tinytex')` &lt;br&gt;`tinytex::install_tinytex()` |
+| Slides      | New File         | some diff in syntax      | one click /  index method                     | HTML or PDF  (with similar &lt;br&gt; characteristics as above)                 |
+| Book        | [many](#additional-steps)  | -              | index method                                  | `install.packages('bookdown')` &lt;br&gt; [book](https://bookdown.org/yihui/bookdown/) |
 
 - Other outputs not covered: Apps (`shiny`), blogs (`blogdown`), packages (`pkgdown`), richer webpages (`pagedown`), and dashboards (`flexdashboard`)
 
@@ -473,11 +486,11 @@ title(main="main title", sub="sub-title",
 name: additional-steps
 # Additional Steps for Book Output 
 .font120[
-1 -  Create a new project: `File-> New Porject... -> New Directory -> Book Project using bookdown`   
+1 -  Create a new project: `File-&gt; New Porject... -&gt; New Directory -&gt; Book Project using bookdown`   
 2 -  Place project in independent folder and then convert into a git repo:
-      `Tools->Project Options`, choose git, then use GitHub app to publish repo.   
+      `Tools-&gt;Project Options`, choose git, then use GitHub app to publish repo.   
 3 -  Place each chapter into a new Rmd, and enumerate them  
-4 -  Go to top-right pane click on `Build -> Build `   
+4 -  Go to top-right pane click on `Build -&gt; Build `   
 5 -  (preparation to share) In the file `_bookdown.yml`, add the following lines    
      -`repo: https://github.com/YOUR-USER-ID/first_book_solution`  
      -`output_dir: docs`  
@@ -555,7 +568,7 @@ We will go step by step using `/dynamicdocs/Figure 5-2-4_solutions.Rmd` as back-
 - Create two code chunks:
 ````
 ```{r download data, eval=FALSE, echo=TRUE, 
-warning=FALSE, results='hide', message=FALSE}`r ''`
+warning=FALSE, results='hide', message=FALSE}
 here goes the code
 ```
 ````
@@ -573,7 +586,7 @@ here goes the code
     - Guam from the sample (state = 98).   
 - Create one code chunk:  
 ````
-```{r data cleaning, echo=TRUE}`r ''`
+```{r data cleaning, echo=TRUE}
 here goes the code
 ```
 ````
@@ -592,7 +605,7 @@ here goes the code
 - Insert a new code chunk:
 
 ````
-```{r analytic file, echo=TRUE}`r ''`
+```{r analytic file, echo=TRUE}
 here goes the code
 ```
 ````
@@ -603,7 +616,7 @@ here goes the code
 
 # Describe the model to estimate (optional)  
 .font140[
-<br>
+&lt;br&gt;
 - Begin a new section (`##`), titled "Define model to estimate".   
 - One line describing what we want to estimate (i.e. "We want to estimate a fixed effect model with lead and lag treatment variables").     
 - A mathematical model that represents the equation to be estimated (look at solutions). 
@@ -612,12 +625,12 @@ here goes the code
 
 # Vizualize the results (optional)
 .font140[
-<br>
+&lt;br&gt;
 
 - Begin a new section (`##`), titled "Vizualize the results".   
 - One line describing what we want to estimate (i.e. "This estimates are then used to create figure 3 of the original paper, which is figure 5.2.4 in MHE.").  
 ````
-```{r viz}`r ''`
+```{r viz}
 here goes the code
 ```
 ````
@@ -645,7 +658,7 @@ here goes the code
 ]
 ---
 
-# Final Remarks & More Resources
+# Final Remarks &amp; More Resources
 .font140[
 
 - With DD we can get closer to a one-click reproducible workflow.
@@ -659,6 +672,128 @@ here goes the code
 - Want to learn more: [great free books](https://bookdown.org/) (can you guess how they were written?)
 ]
 
-```{r gen_pdf, include = FALSE, cache = FALSE, eval = FALSE}
-pagedown::chrome_print("index.html", output = "slides_dd.pdf")
-```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
