@@ -87,7 +87,7 @@ background-size: contain
 - [Optional-but-not-really] 1 program to bring all the elements together: RStudio/RMarkdown, Jupyter
 ]
 ---
-background-image: url("Images/RStudioCS.PNG")
+background-image: url("Images/RstudioCS.png")
 background-size: contain
 # Markdown laguange/syntax in 60 seconds
 
