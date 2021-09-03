@@ -3,8 +3,8 @@ title: "First Slides: Birthday Problem"
 author: "Fernando Hoces de la Guardia"
 date: "9/1/2021"
 output:
-  slidy_presentation: default
   beamer_presentation: default
+  slidy_presentation: default
   ioslides_presentation: default
 ---
 

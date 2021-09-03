@@ -3,8 +3,9 @@ title: "Description of the Birthday Problem"
 author: "Fernando Hoces de la Guardia"
 date: "9/3/2021"
 output:
-  html_document: default
+  pdf_document: default
   word_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
